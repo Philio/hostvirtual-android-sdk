@@ -43,12 +43,27 @@ public class Api {
 	}
 
 	/**
-	 * Set api key
+	 * Set API key
 	 * 
 	 * @param apiKey
 	 */
 	public void setApiKey(String apiKey) {
 		mApiKey = apiKey;
+	}
+	
+	/**
+	 * Create request params and add API key
+	 * 
+	 * @return
+	 * @throws ApiException 
+	 */
+	private List<NameValuePair> getParamsWithKey() throws ApiException {
+		if (mApiKey == null) {
+			throw new ApiException("Method requires an API key");
+		}
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("key", mApiKey));
+		return params;
 	}
 
 	/**
@@ -76,11 +91,7 @@ public class Api {
 	 * @throws JSONException
 	 */
 	public JSONArray servers() throws ApiException, IOException, JSONException {
-		if (mApiKey == null) {
-			throw new ApiException("Method requires an API key");
-		}
-		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("key", mApiKey));
+		List<NameValuePair> params = getParamsWithKey();
 		return new JSONArray(mRequest.execute(Method.GET, BASE_URI + "cloud/servers", params));
 	}
 
@@ -94,11 +105,7 @@ public class Api {
 	 * @throws JSONException
 	 */
 	public JSONObject serverSummary(int serverId) throws ApiException, IOException, JSONException {
-		if (mApiKey == null) {
-			throw new ApiException("Method requires an API key");
-		}
-		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("key", mApiKey));
+		List<NameValuePair> params = getParamsWithKey();
 		return new JSONObject(mRequest.execute(Method.GET,
 				BASE_URI + "cloud/serversummary/" + Integer.toString(serverId), params));
 	}
@@ -112,11 +119,7 @@ public class Api {
 	 * @throws JSONException
 	 */
 	public JSONArray osList() throws ApiException, IOException, JSONException {
-		if (mApiKey == null) {
-			throw new ApiException("Method requires an API key");
-		}
-		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("key", mApiKey));
+		List<NameValuePair> params = getParamsWithKey();
 		return new JSONArray(mRequest.execute(Method.GET, BASE_URI + "cloud/images", params));
 	}
 
@@ -129,11 +132,7 @@ public class Api {
 	 * @throws JSONException
 	 */
 	public JSONArray locations() throws ApiException, IOException, JSONException {
-		if (mApiKey == null) {
-			throw new ApiException("Method requires an API key");
-		}
-		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("key", mApiKey));
+		List<NameValuePair> params = getParamsWithKey();
 		return new JSONArray(mRequest.execute(Method.GET, BASE_URI + "cloud/locations", params));
 	}
 
@@ -147,11 +146,7 @@ public class Api {
 	 * @throws JSONException
 	 */
 	public JSONArray locations(String aPackage) throws ApiException, IOException, JSONException {
-		if (mApiKey == null) {
-			throw new ApiException("Method requires an API key");
-		}
-		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("key", mApiKey));
+		List<NameValuePair> params = getParamsWithKey();
 		params.add(new BasicNameValuePair("package", aPackage));
 		return new JSONArray(mRequest.execute(Method.GET, BASE_URI + "cloud/locations", params));
 	}
@@ -165,11 +160,7 @@ public class Api {
 	 * @throws JSONException
 	 */
 	public JSONArray plans() throws ApiException, IOException, JSONException {
-		if (mApiKey == null) {
-			throw new ApiException("Method requires an API key");
-		}
-		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("key", mApiKey));
+		List<NameValuePair> params = getParamsWithKey();
 		return new JSONArray(mRequest.execute(Method.GET, BASE_URI + "cloud/sizes", params));
 	}
 
@@ -183,11 +174,7 @@ public class Api {
 	 * @throws JSONException
 	 */
 	public JSONArray plans(String location) throws ApiException, IOException, JSONException {
-		if (mApiKey == null) {
-			throw new ApiException("Method requires an API key");
-		}
-		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("key", mApiKey));
+		List<NameValuePair> params = getParamsWithKey();
 		params.add(new BasicNameValuePair("location", location));
 		return new JSONArray(mRequest.execute(Method.GET, BASE_URI + "cloud/sizes", params));
 	}
@@ -201,11 +188,7 @@ public class Api {
 	 * @throws JSONException
 	 */
 	public JSONArray packages() throws ApiException, IOException, JSONException {
-		if (mApiKey == null) {
-			throw new ApiException("Method requires an API key");
-		}
-		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("key", mApiKey));
+		List<NameValuePair> params = getParamsWithKey();
 		return new JSONArray(mRequest.execute(Method.GET, BASE_URI + "cloud/packages", params));
 	}
 
@@ -219,11 +202,7 @@ public class Api {
 	 * @throws JSONException
 	 */
 	public JSONArray dnsZones(String type) throws ApiException, IOException, JSONException {
-		if (mApiKey == null) {
-			throw new ApiException("Method requires an API key");
-		}
-		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("key", mApiKey));
+		List<NameValuePair> params = getParamsWithKey();
 		params.add(new BasicNameValuePair("type", type));
 		return new JSONArray(mRequest.execute(Method.GET, BASE_URI + "dns/zones", params));
 	}
