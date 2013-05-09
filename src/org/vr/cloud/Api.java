@@ -83,7 +83,26 @@ public class Api {
 		params.add(new BasicNameValuePair("key", mApiKey));
 		return new JSONArray(mRequest.execute(Method.GET, BASE_URI + "cloud/servers", params));
 	}
-	
+
+	/**
+	 * Get summary information for a specific server
+	 * 
+	 * @param serverId
+	 * @return
+	 * @throws ApiException
+	 * @throws IOException
+	 * @throws JSONException
+	 */
+	public JSONObject serverSummary(int serverId) throws ApiException, IOException, JSONException {
+		if (mApiKey == null) {
+			throw new ApiException("Method requires an API key");
+		}
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("key", mApiKey));
+		return new JSONObject(mRequest.execute(Method.GET,
+				BASE_URI + "cloud/serversummary/" + Integer.toString(serverId), params));
+	}
+
 	/**
 	 * Get available OS images
 	 * 
@@ -100,7 +119,7 @@ public class Api {
 		params.add(new BasicNameValuePair("key", mApiKey));
 		return new JSONArray(mRequest.execute(Method.GET, BASE_URI + "cloud/images", params));
 	}
-	
+
 	/**
 	 * Get available locations
 	 * 
@@ -153,7 +172,7 @@ public class Api {
 		params.add(new BasicNameValuePair("key", mApiKey));
 		return new JSONArray(mRequest.execute(Method.GET, BASE_URI + "cloud/sizes", params));
 	}
-	
+
 	/**
 	 * Get available plans for a location
 	 * 
@@ -189,7 +208,7 @@ public class Api {
 		params.add(new BasicNameValuePair("key", mApiKey));
 		return new JSONArray(mRequest.execute(Method.GET, BASE_URI + "cloud/packages", params));
 	}
-	
+
 	/**
 	 * Get DNS zones by type
 	 * 
