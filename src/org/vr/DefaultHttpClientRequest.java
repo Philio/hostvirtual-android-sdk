@@ -1,4 +1,4 @@
-package org.vr.cloud;
+package org.vr;
 
 import java.io.IOException;
 import java.util.List;
