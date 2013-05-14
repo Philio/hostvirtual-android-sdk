@@ -280,7 +280,22 @@ public class Cloud extends AbstractAPI {
 	 */
 	public JSONObject stop(int serverId) throws APIException, IOException, JSONException {
 		List<NameValuePair> params = getInitialParams();
-		return new JSONObject(mRequest.execute(Method.POST, CLOUD_URI + "server/shutdown/" + Integer.toString(serverId),
+		return new JSONObject(mRequest.execute(Method.POST,
+				CLOUD_URI + "server/shutdown/" + Integer.toString(serverId), params));
+	}
+
+	/**
+	 * Restart a server
+	 * 
+	 * @param serverId
+	 * @return
+	 * @throws APIException
+	 * @throws IOException
+	 * @throws JSONException
+	 */
+	public JSONObject restart(int serverId) throws APIException, IOException, JSONException {
+		List<NameValuePair> params = getInitialParams();
+		return new JSONObject(mRequest.execute(Method.POST, CLOUD_URI + "server/reboot/" + Integer.toString(serverId),
 				params));
 	}
 
