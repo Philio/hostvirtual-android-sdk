@@ -48,11 +48,15 @@ public class DefaultHttpClientRequest extends AbstractRequest {
 			break;
 		case POST:
 			request = new HttpPost(uri);
-			((HttpPost) request).setEntity(new UrlEncodedFormEntity(params));
+			if (params != null) {
+				((HttpPost) request).setEntity(new UrlEncodedFormEntity(params));
+			}
 			break;
 		case PUT:
 			request = new HttpPut(uri);
-			((HttpPut) request).setEntity(new UrlEncodedFormEntity(params));
+			if (params != null) {
+				((HttpPut) request).setEntity(new UrlEncodedFormEntity(params));
+			}
 			break;
 		case DELETE:
 			request = new HttpDelete(uri + getQueryString(uri, params));

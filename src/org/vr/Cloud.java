@@ -1,6 +1,8 @@
 package org.vr;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
@@ -233,10 +235,12 @@ public class Cloud extends AbstractAPI {
 	 * @throws JSONException
 	 */
 	public JSONObject startRescue(int serverId, String password) throws APIException, IOException, JSONException {
-		List<NameValuePair> params = getInitialParams();
+		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("rescue_pass", password));
-		return new JSONObject(mRequest.execute(Method.POST,
-				CLOUD_URI + "server/start_rescue/" + Integer.toString(serverId), params));
+		return new JSONObject(mRequest.execute(
+				Method.POST,
+				CLOUD_URI + "server/start_rescue/" + Integer.toString(serverId) + "?key="
+						+ URLEncoder.encode(mApiKey, "utf-8"), params));
 	}
 
 	/**
@@ -249,9 +253,10 @@ public class Cloud extends AbstractAPI {
 	 * @throws JSONException
 	 */
 	public JSONObject stopRescue(int serverId) throws APIException, IOException, JSONException {
-		List<NameValuePair> params = getInitialParams();
-		return new JSONObject(mRequest.execute(Method.POST,
-				CLOUD_URI + "server/stop_rescue/" + Integer.toString(serverId), params));
+		return new JSONObject(mRequest.execute(
+				Method.POST,
+				CLOUD_URI + "server/stop_rescue/" + Integer.toString(serverId) + "?key="
+						+ URLEncoder.encode(mApiKey, "utf-8"), null));
 	}
 
 	/**
@@ -264,9 +269,8 @@ public class Cloud extends AbstractAPI {
 	 * @throws JSONException
 	 */
 	public JSONObject start(int serverId) throws APIException, IOException, JSONException {
-		List<NameValuePair> params = getInitialParams();
-		return new JSONObject(mRequest.execute(Method.POST, CLOUD_URI + "server/start/" + Integer.toString(serverId),
-				params));
+		return new JSONObject(mRequest.execute(Method.POST, CLOUD_URI + "server/start/" + Integer.toString(serverId)
+				+ "?key=" + URLEncoder.encode(mApiKey, "utf-8"), null));
 	}
 
 	/**
@@ -279,9 +283,8 @@ public class Cloud extends AbstractAPI {
 	 * @throws JSONException
 	 */
 	public JSONObject stop(int serverId) throws APIException, IOException, JSONException {
-		List<NameValuePair> params = getInitialParams();
-		return new JSONObject(mRequest.execute(Method.POST,
-				CLOUD_URI + "server/shutdown/" + Integer.toString(serverId), params));
+		return new JSONObject(mRequest.execute(Method.POST, CLOUD_URI + "server/shutdown/" + Integer.toString(serverId)
+				+ "?key=" + URLEncoder.encode(mApiKey, "utf-8"), null));
 	}
 
 	/**
@@ -294,9 +297,8 @@ public class Cloud extends AbstractAPI {
 	 * @throws JSONException
 	 */
 	public JSONObject restart(int serverId) throws APIException, IOException, JSONException {
-		List<NameValuePair> params = getInitialParams();
-		return new JSONObject(mRequest.execute(Method.POST, CLOUD_URI + "server/reboot/" + Integer.toString(serverId),
-				params));
+		return new JSONObject(mRequest.execute(Method.POST, CLOUD_URI + "server/reboot/" + Integer.toString(serverId)
+				+ "?key=" + URLEncoder.encode(mApiKey, "utf-8"), null));
 	}
 
 }
