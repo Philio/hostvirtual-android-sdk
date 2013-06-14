@@ -182,6 +182,20 @@ public class Cloud extends AbstractAPI {
 	}
 
 	/**
+	 * Check status of a specific server
+	 * 
+	 * @param serverId
+	 * @return
+	 * @throws APIException
+	 * @throws IOException
+	 * @throws JSONException
+	 */
+	public JSONObject serverStatus(int serverId) throws APIException, IOException, JSONException {
+		List<NameValuePair> params = getInitialParams();
+		return new JSONObject(mRequest.execute(Method.GET, CLOUD_URI + "status/" + Integer.toString(serverId), params));
+	}
+
+	/**
 	 * Get monthly bandwidth summary for a specific server
 	 * 
 	 * @param serverId
