@@ -167,6 +167,21 @@ public class Cloud extends AbstractAPI {
 	}
 
 	/**
+	 * Get job status for a specific server
+	 * 
+	 * @param serverId
+	 * @return
+	 * @throws APIException
+	 * @throws IOException
+	 * @throws JSONException
+	 */
+	public JSONArray serverJobs(int serverId) throws APIException, IOException, JSONException {
+		List<NameValuePair> params = getInitialParams();
+		return new JSONArray(mRequest.execute(Method.GET, CLOUD_URI + "serverjobs/" + Integer.toString(serverId),
+				params));
+	}
+
+	/**
 	 * Get monthly bandwidth summary for a specific server
 	 * 
 	 * @param serverId
