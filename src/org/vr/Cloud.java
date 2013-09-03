@@ -236,7 +236,7 @@ public class Cloud extends AbstractAPI {
 	 */
 	public JSONArray ipv4(int serverId) throws APIException, IOException, JSONException {
 		List<NameValuePair> params = getInitialParams();
-		return new JSONArray(mRequest.execute(Method.GET, CLOUD_URI + "IPv4/" + Integer.toString(serverId), params));
+		return new JSONArray(mRequest.execute(Method.GET, CLOUD_URI + "ipv4/" + Integer.toString(serverId), params));
 	}
 
 	/**
@@ -250,7 +250,7 @@ public class Cloud extends AbstractAPI {
 	 */
 	public JSONArray ipv6(int serverId) throws APIException, IOException, JSONException {
 		List<NameValuePair> params = getInitialParams();
-		return new JSONArray(mRequest.execute(Method.GET, CLOUD_URI + "IPv6/" + Integer.toString(serverId), params));
+		return new JSONArray(mRequest.execute(Method.GET, CLOUD_URI + "ipv6/" + Integer.toString(serverId), params));
 	}
 
 	/**
