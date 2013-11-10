@@ -259,8 +259,10 @@ public class Cloud extends AbstractAPI {
         List<NameValuePair> params = getInitialParams();
         params.add(new BasicNameValuePair("id", Integer.toString(ipId)));
         params.add(new BasicNameValuePair("reverse", reverse));
-        return new JSONObject(mRequest.execute(Method.PUT,
-                CLOUD_URI + "ipv4/" + Integer.toString(ipId), params));
+        return new JSONObject(mRequest.execute(
+                Method.PUT,
+                CLOUD_URI + "ipv4/" + Integer.toString(ipId) + "?key="
+                        + URLEncoder.encode(mApiKey, "utf-8"), params));
     }
 
     /**
@@ -293,8 +295,10 @@ public class Cloud extends AbstractAPI {
         List<NameValuePair> params = getInitialParams();
         params.add(new BasicNameValuePair("id", Integer.toString(ipId)));
         params.add(new BasicNameValuePair("reverse", reverse));
-        return new JSONObject(mRequest.execute(Method.PUT,
-                CLOUD_URI + "ipv6/" + Integer.toString(ipId), params));
+        return new JSONObject(mRequest.execute(
+                Method.PUT,
+                CLOUD_URI + "ipv6/" + Integer.toString(ipId) + "?key="
+                        + URLEncoder.encode(mApiKey, "utf-8"), params));
     }
 
     /**
