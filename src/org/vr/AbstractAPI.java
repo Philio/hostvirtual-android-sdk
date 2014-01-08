@@ -9,7 +9,7 @@ import org.apache.http.message.BasicNameValuePair;
 public abstract class AbstractAPI {
 
 	// Base API path
-	protected static final String BASE_URI = "https://www.vr.org/vapi/";
+	protected static final String BASE_URI = "https://vapi.vr.org/";
 
 	// Request instance
 	protected AbstractRequest mRequest;
